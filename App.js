@@ -7,6 +7,7 @@ import Home from './src/Home/Home';
 import Photo from './src/Photo/Photo';
 import Photo_Analysis from './src/Photo/Photo_Analysis';
 import More from './src/More/More';
+import Uplo from './src/More/Uplo';
 
 export default function App() {
 
@@ -16,6 +17,10 @@ export default function App() {
 
   const navigateToMore = () => {
     setActiveTab('more');
+    setShowNavigationBar(true);
+  };
+  const navigateToUplo = () => {
+    setActiveTab('Uplo');
     setShowNavigationBar(true);
   };
   const navigateToPhotoAnalysis = () => {
@@ -52,7 +57,9 @@ export default function App() {
       case 'login':
         return <Login onLogin={navigateToHome} onNavigateToSignUp={navigateToSignUp} />;
       case 'more':
-        return <More onNavigateToHome={navigateToHome} />;
+        return <More onNavigateToHome={navigateToHome} onNavigateToUplo={navigateToUplo} />;
+      case 'Uplo':
+        return <Uplo onNavigateToHome={navigateToHome} />;
       case 'photo_analysis':
         return <Photo_Analysis onNavigateToPhoto={navigateToPhoto} />;
       default:
