@@ -18,7 +18,15 @@ const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalys
       </View>
       
       <View style={styles.middleImagesContainer}>
-        
+        <View style={styles.imageContainer}>
+          <TouchableOpacity onPress={navigateToPhotoAnalysis}>
+            <Image
+              source={require('../../assets/icon.png')}
+              style={styles.image4}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.bottomImagesContainer}>
@@ -27,6 +35,7 @@ const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalys
             <Image
               source={require('../../assets/cart.png')}
               style={styles.image1}
+              resizeMode="contain"
             />
           </TouchableOpacity>
         </View>
@@ -35,7 +44,8 @@ const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalys
           <TouchableOpacity onPress={navigateToVideoAnalysis}>
             <Image
               source={require('../../assets/infor.jpg')}
-              style={styles.image2}
+              style={styles.image1}
+              resizeMode="contain"
             />
           </TouchableOpacity>
         </View>
@@ -64,18 +74,21 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   image: {
-    width: SCREEN_WIDTH * 0.2,
-    height: SCREEN_HEIGHT * 0.1,
+    width: SCREEN_WIDTH * 0.4,
+    height: SCREEN_HEIGHT * 0.3,
   },
   image1: {
-    width: SCREEN_WIDTH * 0.2,
+    width: SCREEN_WIDTH * 0.3,
     height: SCREEN_HEIGHT * 0.1,
     borderRadius: 20,
+    borderColor: '#ccc',
+    borderWidth: 1,
   },
-  image2: {
-    width: SCREEN_WIDTH * 0.2,
-    height: SCREEN_HEIGHT * 0.1,
+  image4: {
+    width: SCREEN_WIDTH * 1,
+    height: SCREEN_HEIGHT * 0.55,
     borderRadius: 20,
+    marginTop: -120,
   },
   middleImagesContainer: {
     flexDirection: 'row',
