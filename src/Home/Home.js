@@ -19,13 +19,11 @@ const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalys
       
       <View style={styles.middleImagesContainer}>
         <View style={styles.imageContainer}>
-          <TouchableOpacity onPress={navigateToPhotoAnalysis}>
             <Image
               source={require('../../assets/icon.png')}
               style={styles.image4}
               resizeMode="contain"
             />
-          </TouchableOpacity>
         </View>
       </View>
 
@@ -33,7 +31,7 @@ const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalys
         <View style={styles.imageContainer2}>
           <TouchableOpacity onPress={navigateToPhotoAnalysis}>
             <Image
-              source={require('../../assets/cart.png')}
+              source={require('../../assets/infor.jpg')}
               style={styles.image1}
               resizeMode="contain"
             />
@@ -41,9 +39,9 @@ const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalys
         </View>
 
         <View style={styles.imageContainer3}>
-          <TouchableOpacity onPress={navigateToVideoAnalysis}>
+          <TouchableOpacity onPress={onNavigateToMore}>
             <Image
-              source={require('../../assets/infor.jpg')}
+              source={require('../../assets/cart.png')}
               style={styles.image1}
               resizeMode="contain"
             />
