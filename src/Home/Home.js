@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api_uri } from '@env';
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
-const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalysis }) => {
+const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalysis, navigateToUplo }) => {
 
   return (
     <View style={styles.container}>
@@ -39,7 +39,7 @@ const Home = ({ onNavigateToMore, navigateToPhotoAnalysis, navigateToVideoAnalys
         </View>
 
         <View style={styles.imageContainer3}>
-          <TouchableOpacity onPress={onNavigateToMore}>
+          <TouchableOpacity onPress={navigateToUplo}>
             <Image
               source={require('../../assets/cart.png')}
               style={styles.image1}

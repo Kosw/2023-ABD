@@ -49,7 +49,7 @@ export default function App() {
   const renderPage = () => {
     switch (activeTab) {
       case 'home':
-        return <Home onNavigateToMore={navigateToMore} navigateToPhotoAnalysis={navigateToPhotoAnalysis} />;
+        return <Home onNavigateToMore={navigateToMore} navigateToPhotoAnalysis={navigateToPhotoAnalysis} navigateToUplo={navigateToUplo} />;
       case 'photo':
         return <Photo />;
       case 'signUp':
