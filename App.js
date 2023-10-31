@@ -59,7 +59,7 @@ export default function App() {
       case 'more':
         return <More onNavigateToHome={navigateToHome} onNavigateToUplo={navigateToUplo} />;
       case 'Uplo':
-        return <Uplo onNavigateToHome={navigateToHome} />;
+        return <Uplo onNavigateToHome={navigateToHome} onNavigateToMore={navigateToMore} />;
       case 'photo_analysis':
         return <Photo_Analysis onNavigateToPhoto={navigateToPhoto} />;
       default:

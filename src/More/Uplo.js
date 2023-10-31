@@ -1,38 +1,54 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, TextInput, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View, Text, StyleSheet, Dimensions, TextInput, Button } from 'react-native';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
-const Uplo = ({ onNavigateToHome }) => {
-  const [postContent, setPostContent] = useState('');
+const Uplo = ({ onNavigateToHome, onNavigateToMore}) => {
+  const [product, setProduct] = useState('');
+  const [waste, setWaste] = useState(''); 
 
   const handlePost = () => {
-    if (postContent.trim() !== '') {
-      onPost(postContent);
-      setPostContent('');
+    if (product.trim() !== '' && waste.trim() !== '') {
+      setProduct('');
+      setWaste('');
     }
   };
 
   return (
-    <View>
-    <TextInput
-      placeholder="글을 작성하세요..."
-      value={postContent}
-      onChangeText={setPostContent}
-      multiline
-      style={{ height: 200, padding: 10, borderColor: 'gray', borderWidth: 1 }}
-    />
-    <Button title="글 올리기" onPress={handlePost} />
-  </View>
+    <View style={styles.container}>
+      <TextInput
+        placeholder="만드신 제품을 입력해주세요."
+        value={product}
+        onChangeText={setProduct}
+        multiline
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="사용하신 쓰레기를 입력해주세요."
+        value={waste}
+        onChangeText={setWaste}
+        multiline
+        style={styles.input}
+      />
+      <Button title="글 올리기" onPress={onNavigateToMore} color="#00DE16" />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
     padding: 16,
+  },
+  input: {
+    height: 120,
+    marginBottom: 20,
+    padding: 10,
+    borderColor: '#00DE16', 
+    borderWidth: 2.5,  
+    borderRadius: 10, 
   },
 });
 
