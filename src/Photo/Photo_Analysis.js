@@ -3,7 +3,9 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
-const trash = "페트병"; // 변수로 묶음
+const trash = "페트병";
+
+
 
 const Photo_Analysis = ({ onNavigateToPhoto }) => {
   return (
