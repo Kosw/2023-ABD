@@ -17,6 +17,11 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore}) => {
 
   return (
     <View style={styles.container}>
+       <View style={styles.buttonContainer}>
+        <Button title="글 올리기" onPress={onNavigateToMore} color="#00DE16" />
+      </View>
+      <Text style={styles.pageTitle}>제품</Text>
+      
       <TextInput
         placeholder="만드신 제품을 입력해주세요."
         value={product}
@@ -24,6 +29,7 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore}) => {
         multiline
         style={styles.input}
       />
+      <Text style={styles.pageTitle}>쓰레기</Text>
       <TextInput
         placeholder="사용하신 쓰레기를 입력해주세요."
         value={waste}
@@ -31,7 +37,6 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore}) => {
         multiline
         style={styles.input}
       />
-      <Button title="글 올리기" onPress={onNavigateToMore} color="#00DE16" />
     </View>
   );
 }
@@ -43,12 +48,24 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   input: {
-    height: 120,
+    height: 230,
     marginBottom: 20,
-    padding: 10,
+    padding: 60,
     borderColor: '#00DE16', 
-    borderWidth: 2.5,  
+    borderWidth: 3,  
     borderRadius: 10, 
+  },
+  buttonContainer: {
+    position: 'absolute',
+    top: 50,
+    right: 0,
+  },
+  pageTitle: {
+    fontSize: 28,
+    // textAlign: 'center',
+    marginTop: 30,
+    marginBottom: 16,
+    color: '#00DE16',
   },
 });
 
