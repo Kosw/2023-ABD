@@ -37,7 +37,7 @@ export default function Photo() {
     });
 
     try {
-      const response = await fetch('http://your-server-url/predict', {
+      const response = await fetch('https://95c7-182-226-41-77.ngrok-free.app/predict/image', {
         method: 'POST',
         body: data,
       });

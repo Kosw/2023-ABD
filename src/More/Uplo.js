@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     fontSize: 28,
-    // textAlign: 'center',
     marginTop: 30,
     marginBottom: 16,
     color: '#00DE16',
