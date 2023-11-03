@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { api_uri } from '@env';
 
 const SignUp = ({ onNavigateToLogin }) => {
@@ -14,28 +14,36 @@ const SignUp = ({ onNavigateToLogin }) => {
       return;
     }
 
-    const response = await fetch(
-      api_uri + '/api/v1/user/register',
+    console.log(email, password, name)
+
+    const url = "https://b9ea-2406-da12-16a-fe00-a13c-a008-b335-7158.ngrok-free.app/team5/register"
+    
+    const response = await fetch(url,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user_name: name,
           user_id: email,
           user_pw: password,
+          user_name: name,
+          log: []
         }),
-      },
+      }, 
     );
 
-    if (response.status === 200) {
+    const responsetext = await response.text();
+
+    if (response.status === 200 && responsetext === '확인이요') {
+      console.log('성공');
       onNavigateToLogin();
       return response;
     } else {
+      Alert.alert('회원가입 실패', '이미 존재하는 아이디입니다.');
       console.log('실패');
-      // throw new Error('unable to get');
     }
+
   };
 
   return (
