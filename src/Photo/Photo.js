@@ -1,16 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert,AsyncStorage,ActivityIndicator } from 'react-native';
 import { Camera } from 'expo-camera';
 
+
 export default function Photo() {
-  const getData = async () => {
-    try {
-      const accessToken = await AsyncStorage.getItem('accessToken');
-      console.log('accessToken:', accessToken);
-    } catch (error) {
-      console.error('Error getting data:', error);
-    }
-  };
+  const [loading, setLoading] = useState(false); // 추가된 부분
   const cameraRef = useRef(null);
   const [hasPermission, setHasPermission] = useState(null);
 
@@ -29,6 +23,8 @@ export default function Photo() {
   };
 
   const uploadPhoto = async (photo) => {
+    setLoading(true); // 업로드 시작 시 로딩 상태 설정
+
     const data = new FormData();
     data.append('photo', {
       uri: photo.uri,
@@ -37,7 +33,8 @@ export default function Photo() {
     });
 
     try {
-      const response = await fetch('https://95c7-182-226-41-77.ngrok-free.app/predict/image', {
+      const url = 'https://ba84-2001-2d8-30c-9bfb-8ce-8ca1-51c2-ad67.ngrok-free.app';
+      const response = await fetch(url+'/predict/image', {
         method: 'POST',
         body: data,
       });
@@ -45,12 +42,14 @@ export default function Photo() {
       if (response.ok) {
         const result = await response.json();
         console.log(result);
-        // 예측 결과 처리
+        Alert.alert('Success', '분석이 끝났습니다. 홈 화면에 있는 첫 번째 사진을 눌러주시길 바랍니다.');
       } else {
         Alert.alert('Error', 'Failed to upload photo');
       }
     } catch (error) {
       Alert.alert('Error', 'Failed to connect to the server');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -75,6 +74,12 @@ export default function Photo() {
           </TouchableOpacity>
         </View>
       </Camera>
+
+      {loading && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )}
     </View>
   );
 }
@@ -94,5 +99,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#fff',
+  },
+  loadingContainer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 });
