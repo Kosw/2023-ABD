@@ -42,7 +42,7 @@ export default function Photo() {
       if (response.ok) {
         const result = await response.json();
         console.log(result);
-        Alert.alert('Success', '분석이 끝났습니다. 홈 화면에 있는 첫 번째 사진을 눌러주시길 바랍니다.');
+        Alert.alert('Success', '분석이 끝났습니다. 사진 속 쓰레기는 '+result['result']+'입니다.');
       } else {
         Alert.alert('Error', 'Failed to upload photo');
       }
