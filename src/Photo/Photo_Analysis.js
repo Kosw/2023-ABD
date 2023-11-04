@@ -1,15 +1,45 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import axios from 'axios'; // axios 라이브러리 추가
+import { api_key } from '@env';
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
-const Photo_Analysis = ({ onNavigateToPhoto }) => {
-  const [trash, setTrash] = useState(""); // 사용자 입력을 받을 상태값 추가
-  const [showItems, setShowItems] = useState(false); // 업사이클링 아이템들을 보여줄지 여부 상태값 추가
+const Photo_Analysis = () => {
+  const [trash, setTrash] = useState("");
+  const [suggestedItems, setSuggestedItems] = useState([]);
 
-  const handleConfirm = () => {
-    setShowItems(true); // 확인 버튼이 눌렸을 때 업사이클링 아이템들을 보이게 설정
-  }
+  const handleConfirm = async () => {
+    try {
+      const apiUrl = 'https://api.openai.com/v1/chat/completions';
+  
+      const response = await axios.post(apiUrl, {
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a helpful assistant.',
+          },
+          {
+            role: 'user',
+            content: trash,
+          },
+        ],
+        model: 'gpt-3.5-turbo',
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${api_key}`,
+        },
+      });
+      console.log(response.data.choices[0].message.content);
+      const suggestedResponses = response.data.choices[0].message.content.split('\n');
+      console.log(suggestedResponses);
+      setSuggestedItems(suggestedResponses);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
 
   return (
     <View style={styles.container}>
@@ -17,33 +47,23 @@ const Photo_Analysis = ({ onNavigateToPhoto }) => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="쓰레기 입력" // 입력 힌트를 표시합니다.
+          placeholder="쓰레기 입력"
           value={trash}
-          onChangeText={setTrash} // 입력값이 변경될 때마다 호출됩니다.
+          onChangeText={setTrash}
         />
         <TouchableOpacity onPress={handleConfirm}>
           <Text style={styles.confirmButton}>확인</Text>
         </TouchableOpacity>
       </View>
       
-      {showItems && (
+      {suggestedItems.length > 0 && (
         <View style={styles.column}>
           <Text style={styles.infoText2}>만들 수 있는 업사이클링 제품들</Text>
-          <View style={styles.cell}>
-            <Text style={styles.cellText}>{trash} 화분</Text>
-            <Text style={styles.additionalText}>추가 내용 3</Text>
-            <Text style={styles.additionalText}>추가 내용 4</Text>
-          </View>
-          <View style={styles.cell}>
-            <Text style={styles.cellText}>{trash} 필통</Text>
-            <Text style={styles.additionalText}>추가 내용 5</Text>
-            <Text style={styles.additionalText}>추가 내용 6</Text>
-          </View>
-          <View style={styles.cell}>
-            <Text style={styles.cellText}>{trash} 필통</Text>
-            <Text style={styles.additionalText}>추가 내용 5</Text>
-            <Text style={styles.additionalText}>추가 내용 6</Text>
-          </View>
+          {suggestedItems.map((item, index) => (
+            <View key={index} style={styles.cell}>
+              <Text style={styles.cellText}>{item}</Text>
+            </View>
+          ))}
         </View>
       )}
     </View>
