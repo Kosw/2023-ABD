@@ -1,20 +1,23 @@
-import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Dimensions, TextInput } from 'react-native';
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
-const trash = "페트병";
-
-
-
 const Photo_Analysis = ({ onNavigateToPhoto }) => {
+  const [trash, setTrash] = useState(""); // 사용자 입력을 받을 상태값 추가
+
   return (
     <View style={styles.container}>
       <Text style={styles.infoText}>업사이클링 종류와 방법</Text>
       <View style={styles.celi}>
-        <Text style={styles.cellText}>사진 속 쓰레기 : {trash}</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="쓰레기 입력" // 입력 힌트를 표시합니다.
+          value={trash}
+          onChangeText={setTrash} // 입력값이 변경될 때마다 호출됩니다.
+        />
       </View>
-      <Text style={styles.infoText}>{trash}으로 만들 수 있는 업사이클링 제품들</Text>
+      <Text style={styles.infoText}>만들 수 있는 업사이클링 제품들</Text>
       <View style={styles.column}>
         <View style={styles.cell}>
           <Text style={styles.cellText}>{trash} 화분</Text>
@@ -31,7 +34,6 @@ const Photo_Analysis = ({ onNavigateToPhoto }) => {
           <Text style={styles.additionalText}>추가 내용 5</Text>
           <Text style={styles.additionalText}>추가 내용 6</Text>
         </View>
-        
       </View>
     </View>
   );
@@ -77,6 +79,13 @@ const styles = StyleSheet.create({
   additionalText: {
     fontSize: 12,
     marginTop: 5,
+  },
+  input: {
+    width: SCREEN_WIDTH / 1.2,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    borderRadius: 6,
+    fontSize: 22,
   },
 });
 
