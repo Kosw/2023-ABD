@@ -1,4 +1,4 @@
-# cnu_adventure_design
+# 2023-AVD
 
 ### frontend
 <img src="https://img.shields.io/badge/react native-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
@@ -34,5 +34,5 @@ yarn start
 ### 백엔드 로그인 서버 및 플라스크 서버 바로가기 
 <a href="https://github.com/Kosw/2023-AVD_backend">2023-AVD_backend<a>
 
-### 백엔드 로그인 시스템 및 기록 코드 바로가기 
+### 모델 학습 코드 바로가기 
 <a href="https://github.com/Kosw/2023-AVD_AI">2023-AVD_AI<a>
