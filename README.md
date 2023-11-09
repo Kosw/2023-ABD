@@ -34,5 +34,5 @@ yarn start
 ### 백엔드 로그인 서버 및 플라스크 서버 바로가기 
 <a href="https://github.com/Kosw/2023-AVD_backend">2023-AVD_backend<a>
 
-### 모델 학습 코드 바로가기 
+### 모델 학습 코드 바로가기 
 <a href="https://github.com/Kosw/2023-AVD_AI">2023-AVD_AI<a>
