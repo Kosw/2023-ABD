@@ -6,6 +6,26 @@ const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const More = ({ onNavigateToHome, onNavigateToUplo }) => {
+  const [product, setProduct] = useState('');
+  const [waste, setWaste] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const fetchlogData = async () => {
+    try {
+      const url = "https://ee58-2406-da12-16a-fe00-a13c-a008-b335-7158.ngrok-free.app/team5/team5storeLog"
+      const response = await fetch(url, {
+        method: 'GET'
+      });
+
+      const responseJson = await response.json();
+      setProduct(responseJson[0].product);
+      setPhoneNumber(responseJson[0].phoneNumber);
+      setWaste(responseJson[0].use_trash);
+  } catch (error) {
+    console.error(error);
+  }
+  fetchlogData()
+}
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -19,9 +39,9 @@ const More = ({ onNavigateToHome, onNavigateToUplo }) => {
             resizeMode="contain"
           />
         </View>
-        <Text style={styles.postTitle}>키보드 키 목걸이</Text>
-        <Text style={styles.postContent}>폐키보드를 사용해 만들었습니다.</Text>
-        <Text style={styles.postContent}>연락처 : XXX</Text>
+        <Text style={styles.postTitle}>{product}</Text>
+        <Text style={styles.postContent}>{waste}를 사용해 만들었습니다.</Text>
+        <Text style={styles.postContent}>연락처 : {phoneNumber}</Text>
       </View>
 
       <View style={styles.postContainer}>
