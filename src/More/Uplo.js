@@ -48,7 +48,7 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore }) => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <Button title="글 올리기" onPress={onNavigateToMore} color="#00DE16" />
+        <Button title="글 올리기" onPress={handleSignUp, onNavigateToMore} color="#00DE16" />
       </View>
       <Text style={styles.pageTitle}>제품</Text>
 

@@ -4,11 +4,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-
+let flag = true;
 const More = ({ onNavigateToHome, onNavigateToUplo }) => {
-  const [product, setProduct] = useState('');
-  const [waste, setWaste] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [data, setData] = useState([]);
 
   const fetchlogData = async () => {
     try {
@@ -18,44 +16,44 @@ const More = ({ onNavigateToHome, onNavigateToUplo }) => {
       });
 
       const responseJson = await response.json();
-      setProduct(responseJson[0].product);
-      setPhoneNumber(responseJson[0].phoneNumber);
-      setWaste(responseJson[0].use_trash);
-  } catch (error) {
-    console.error(error);
+      dataArray = [];
+      console.log(responseJson)
+
+      for (let i = 0; i < responseJson.length; i++) {
+        dataArray.push([responseJson[i].product, responseJson[i].use_trash, responseJson[i].phoneNumber])
+      }
+      setData(dataArray)
+      flag = false;
+    } catch (error) {
+      console.error(error);
+    }
   }
-  fetchlogData()
-}
+
+  if (flag) {
+    fetchlogData()
+  }
+
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Text style={styles.pageTitle}>Store</Text>
-      
-      <View style={styles.postContainer}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={require('../../assets/key.jpeg')}
-            style={styles.image}
-            resizeMode="contain"
-          />
-        </View>
-        <Text style={styles.postTitle}>{product}</Text>
-        <Text style={styles.postContent}>{waste}를 사용해 만들었습니다.</Text>
-        <Text style={styles.postContent}>연락처 : {phoneNumber}</Text>
-      </View>
 
-      <View style={styles.postContainer}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={require('../../assets/krk.jpeg')}
-            style={styles.image}
-            resizeMode="contain"
-          />
-        </View>
-        <Text style={styles.postTitle}>코르크 마개 냅킨 홀더</Text>
-        <Text style={styles.postContent}>코르크 마개를 사용해 만들었습니다.</Text>
-        <Text style={styles.postContent}>연락처 : XXX</Text>
-      </View>
+
+
+      {data.map((item, index) => {
+        return (
+          <View style={styles.postContainer}>
+            <View style={styles.imageContainer}>
+              <View key={index}>
+                <Text style={styles.postTitle}>{item[0]}</Text>
+                <Text style={styles.postContent}>{item[1]}를 사용해 만들었습니다.</Text>
+                <Text style={styles.postContent}>연락처 : {item[2]}</Text>
+              </View>
+            </View>
+          </View>
+
+        )
+      })}
 
     </ScrollView>
   );
