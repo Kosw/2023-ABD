@@ -38,7 +38,9 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore }) => {
 
     if (response.status === 200) {
       console.log('성공');
+      onNavigateToMore();
       return response;
+
     } else {
       console.log('실패');
     }
@@ -48,7 +50,7 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore }) => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <Button title="글 올리기" onPress={handleSignUp, onNavigateToMore} color="#00DE16" />
+        <Button title="글 올리기" onPress={handleSignUp} color="#00DE16" />
       </View>
       <Text style={styles.pageTitle}>제품</Text>
 
@@ -67,6 +69,7 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore }) => {
         multiline
         style={styles.input}
       />
+      <Text style={styles.pageTitle}>연락처</Text>
       <TextInput
         placeholder="전화번호를 입력해주세요."
         value={phoneNumber}
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   input: {
-    height: 230,
+    height: 120,
     marginBottom: 20,
     padding: 60,
     borderColor: '#00DE16',
