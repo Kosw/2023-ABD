@@ -45,6 +45,13 @@ const More = ({ onNavigateToHome, onNavigateToUplo }) => {
           <View style={styles.postContainer}>
             <View style={styles.imageContainer}>
               <View key={index}>
+              {/* <View style={styles.imageContainer}>
+          <Image
+            source={require('../../assets/krk.jpeg')}
+            style={styles.image}
+            resizeMode="contain"
+          />
+        </View> */}
                 <Text style={styles.postTitle}>{item[0]}</Text>
                 <Text style={styles.postContent}>{item[1]}를 사용해 만들었습니다.</Text>
                 <Text style={styles.postContent}>연락처 : {item[2]}</Text>
@@ -75,7 +82,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000000',
     borderRadius: 10,
-    padding: 16,
+    padding: 26,
     marginBottom: 16,
   },
   imageContainer: {
