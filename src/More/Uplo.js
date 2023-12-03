@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, TextInput, Button } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TextInput, Button, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -48,36 +48,41 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <Button title="글 올리기" onPress={handleSignUp} color="#00DE16" />
-      </View>
-      <Text style={styles.pageTitle}>제품</Text>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <View style={styles.buttonContainer}>
+          <Button title="글 올리기" onPress={handleSignUp} color="#00DE16" />
+        </View>
+        <Text style={styles.pageTitle}>제품</Text>
 
-      <TextInput
-        placeholder="만드신 제품을 입력해주세요."
-        value={product}
-        onChangeText={setProduct}
-        multiline
-        style={styles.input}
-      />
-      <Text style={styles.pageTitle}>쓰레기</Text>
-      <TextInput
-        placeholder="사용하신 쓰레기를 입력해주세요."
-        value={waste}
-        onChangeText={setWaste}
-        multiline
-        style={styles.input}
-      />
-      <Text style={styles.pageTitle}>연락처</Text>
-      <TextInput
-        placeholder="전화번호를 입력해주세요."
-        value={phoneNumber}
-        onChangeText={setPhoneNumber}
-        multiline
-        style={styles.input}
-      />
-    </View>
+        <TextInput
+          placeholder="만드신 제품을 입력해주세요."
+          value={product}
+          onChangeText={setProduct}
+          multiline
+          style={styles.input}
+        />
+        <Text style={styles.pageTitle}>쓰레기</Text>
+        <TextInput
+          placeholder="사용하신 쓰레기를 입력해주세요."
+          value={waste}
+          onChangeText={setWaste}
+          multiline
+          style={styles.input}
+        />
+        <Text style={styles.pageTitle}>연락처</Text>
+        <TextInput
+          placeholder="전화번호를 입력해주세요."
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
+          multiline
+          style={styles.input}
+        />
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
 
