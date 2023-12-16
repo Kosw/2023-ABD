@@ -18,7 +18,7 @@ const Uplo = ({ onNavigateToHome, onNavigateToMore }) => {
   };
 
   const handleSignUp = async () => {
-    const url = "https://ee58-2406-da12-16a-fe00-a13c-a008-b335-7158.ngrok-free.app/team5/team5storeSave"
+    const url = "http://13.125.75.145:3000/team5/team5storeSave"
     
     const response = await fetch(url,
       {

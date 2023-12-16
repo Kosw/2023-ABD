@@ -10,7 +10,7 @@ const More = ({ onNavigateToHome, onNavigateToUplo }) => {
 
   const fetchlogData = async () => {
     try {
-      const url = "https://ee58-2406-da12-16a-fe00-a13c-a008-b335-7158.ngrok-free.app/team5/team5storeLog"
+      const url = "http://13.125.75.145:3000/team5/team5storeLog"
       const response = await fetch(url, {
         method: 'GET'
       });
@@ -45,13 +45,13 @@ const More = ({ onNavigateToHome, onNavigateToUplo }) => {
           <View style={styles.postContainer}>
             <View style={styles.imageContainer}>
               <View key={index}>
-              {/* <View style={styles.imageContainer}>
+              <View style={styles.imageContainer}>
           <Image
-            source={require('../../assets/krk.jpeg')}
+            source={require('../../assets/icon.png')}
             style={styles.image}
             resizeMode="contain"
           />
-        </View> */}
+        </View>
                 <Text style={styles.postTitle}>{item[0]}</Text>
                 <Text style={styles.postContent}>{item[1]}를 사용해 만들었습니다.</Text>
                 <Text style={styles.postContent}>연락처 : {item[2]}</Text>

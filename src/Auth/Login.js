@@ -40,7 +40,7 @@ const Login = ({ onLogin, onNavigateToSignUp }) => {
     setIsLoading(true);
 
     // const url = api_uri+"/team3/login"
-    const url = "https://ee58-2406-da12-16a-fe00-a13c-a008-b335-7158.ngrok-free.app/team3/login"
+    const url = "http://13.125.75.145:3000/team3/login"
     
     try {
       const response = await fetch(url, {

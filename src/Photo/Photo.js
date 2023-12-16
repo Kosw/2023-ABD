@@ -33,7 +33,7 @@ export default function Photo() {
     });
 
     try {
-      const url = 'https://938a-2001-2d8-624c-eb84-9033-faca-999d-2001.ngrok-free.app';
+      const url = 'https://81e6-39-119-249-5.ngrok-free.app';
       const response = await fetch(url+'/predict/image', {
         method: 'POST',
         body: data,
